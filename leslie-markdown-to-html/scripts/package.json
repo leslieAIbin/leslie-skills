@@ -1,0 +1,9 @@
+{
+  "name": "leslie-markdown-to-html-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "leslie-chrome-cdp": "file:vendor/leslie-chrome-cdp",
+    "leslie-md": "file:vendor/leslie-md"
+  }
+}

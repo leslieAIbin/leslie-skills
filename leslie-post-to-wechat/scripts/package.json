@@ -1,0 +1,12 @@
+{
+  "name": "leslie-post-to-wechat-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@jsquash/webp": "^1.5.0",
+    "leslie-chrome-cdp": "file:vendor/leslie-chrome-cdp",
+    "leslie-md": "file:vendor/leslie-md",
+    "jimp": "^1.6.0",
+    "socks": "^2.8.9"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "leslie-chrome-cdp",
+  "version": "0.1.0-local",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./mermaid": {
+      "import": "./dist/mermaid.js",
+      "require": "./dist/mermaid.cjs",
+      "default": "./dist/mermaid.js"
+    }
+  },
+  "description": "Local Chrome DevTools Protocol utilities for Leslie Skills.",
+  "engines": {
+    "bun": ">=1.2.0"
+  }
+}
