@@ -12,8 +12,17 @@ Leslie 的跨 Agent Skill 单一源码仓库。
 ## 新机器恢复
 
 ```bash
+gh auth login -h github.com -p https -w
 mkdir -p ~/.agents
-git clone https://github.com/leslieAIbin/leslie-skills.git ~/.agents/skills
+gh repo clone leslieAIbin/leslie-skills ~/.agents/skills
+```
+
+恢复 JavaScript Skill 的本地依赖：
+
+```bash
+for skill in leslie-diagram leslie-markdown-to-html leslie-post-to-wechat leslie-post-to-x; do
+  (cd "$HOME/.agents/skills/$skill/scripts" && bun install)
+done
 ```
 
 然后在 CC Switch 中：
