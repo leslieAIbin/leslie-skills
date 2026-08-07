@@ -1,15 +1,42 @@
 # Leslie Skills
 
-Leslie 的跨 Agent Skill 单一源码仓库。
+Leslie 的跨 Agent Skill 单一源码仓库。个人与经过改造的 Skill 保存在这里；
+官方飞书 Skill 由 CC Switch 直接跟踪上游；私密数据型 Skill 仅保留在本机。
 
-## 本地结构
+## 架构
 
-- 主目录：`~/.agents/skills`
-- Claude Code：由 CC Switch 软链接到 `~/.claude/skills`
-- Codex：由 CC Switch 软链接到 `~/.codex/skills`
-- OpenCode：由 CC Switch 软链接到 `~/.opencode/skills`
+```text
+leslieAIbin/leslie-skills ─┐
+                           ├─ CC Switch ─ ~/.agents/skills
+larksuite/cli/skills ──────┘                  ├─ ~/.claude/skills
+                                             ├─ ~/.codex/skills
+                                             └─ ~/.opencode/skills
+```
 
-## 新机器恢复
+- 唯一运行主目录：`~/.agents/skills`
+- 分发方式：CC Switch 软链接
+- 个人仓库：`leslieAIbin/leslie-skills`
+- 飞书上游：`larksuite/cli` 的 `skills/` 子目录
+- 当前清单和来源：[SKILLS.md](SKILLS.md)
+- 新机器安装：[INSTALL.md](INSTALL.md)
+- 日常更新：[UPDATE.md](UPDATE.md)
+
+## 仓库边界
+
+本仓库提交以下内容：
+
+- Leslie 自有或经过明确改造的 Skill。
+- 经安全审查后固定版本的第三方 Skill，保留许可证和 `UPSTREAM.md`。
+- 安装、更新、来源和恢复文档。
+
+本仓库不提交：
+
+- `lark-*`：由 CC Switch 直接从 `larksuite/cli/skills` 安装和更新。
+- `leslie-wechat-local-vault`：本机私有、非商业使用，不进入公开仓库。
+- API Key、Token、Cookie、App Secret、私钥、`.env`。
+- Memory Home、微信数据库、明文导出、缓存、日志和运行状态。
+
+## 快速恢复
 
 ```bash
 gh auth login -h github.com -p https -w
@@ -17,34 +44,15 @@ mkdir -p ~/.agents
 gh repo clone leslieAIbin/leslie-skills ~/.agents/skills
 ```
 
-恢复 JavaScript Skill 的本地依赖：
+随后按 [INSTALL.md](INSTALL.md) 配置 CC Switch、恢复依赖并安装飞书官方 Skill。
 
-```bash
-for skill in leslie-diagram leslie-markdown-to-html leslie-post-to-wechat leslie-post-to-x; do
-  (cd "$HOME/.agents/skills/$skill/scripts" && bun install)
-done
-```
+## 外部上游
 
-然后在 CC Switch 中：
+- `skill-vetter`：ClawHub `@spclaudehome/skill-vetter`，MIT-0。
+- `impeccable`：`pbakaus/impeccable`，Apache-2.0；不自动安装 Hooks。
+- `design-taste-frontend`：`Leonxlnx/taste-skill`，MIT。
+- `imagegen-frontend-web`：`Leonxlnx/taste-skill`，MIT。
+- `leslie-task-contract`：基于 `joeseesun/qiaomu-goal-meta-skill` 独立改造，MIT。
 
-1. 将 Skills 存储位置设为 `~/.agents/skills`。
-2. 选择“导入已有”。
-3. 为 Claude、Codex、OpenCode 启用需要的 Skill。
-4. Skills 同步方式选择“软链接”。
-
-## 日常更新
-
-```bash
-git -C ~/.agents/skills pull --ff-only
-git -C ~/.agents/skills status
-git -C ~/.agents/skills add .
-git -C ~/.agents/skills commit -m "Update skills"
-git -C ~/.agents/skills push
-```
-
-## 安全边界
-
-- 不提交 API Key、Token、Cookie、私钥或 `.env`。
-- `leslie-agent-memory` 的 Memory Home 是独立数据目录，不属于本仓库。
-- `node_modules`、缓存、运行状态和导出结果不进入版本库。
-- JavaScript 依赖通过各 Skill 自带的 `package.json` 与 lockfile 恢复。
+更新第三方 Skill 前必须重新安全审查，并同步更新对应的 `UPSTREAM.md`、
+许可证和版本记录。

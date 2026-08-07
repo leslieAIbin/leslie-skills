@@ -1,0 +1,23 @@
+{
+  "skill_name": "leslie-task-contract",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想让 Codex 帮我把这个旧 Java 项目升级一下，你给我写个 /goal，别让它乱改数据库。",
+      "expected_output": "A Chinese Codex /goal with repository discovery, concrete verification, database protection, bounded iteration and pause conditions.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "把‘做一个好看的产品官网’整理成 Claude Code 和 OpenCode 都能执行的任务说明。",
+      "expected_output": "A tool-neutral Chinese task contract that turns visual taste into screenshot and responsive review criteria without using /goal as the only format.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "帮我定义一个长期任务：调研三个供应商，允许联网，但不能登录账号、付费或联系销售。",
+      "expected_output": "A research task contract with source evidence, explicit network allowance, forbidden account/payment/contact actions, completion and pause conditions.",
+      "files": []
+    }
+  ]
+}
