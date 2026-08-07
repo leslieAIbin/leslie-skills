@@ -32,3 +32,10 @@
 
 # Local logs.
 **/*.log
+
+# Official Lark Skills are installed and updated by CC Switch directly from
+# larksuite/cli. Keep only their inventory and installation instructions here.
+/lark-*/
+
+# Private, local-only WeChat data tooling must never enter the public repo.
+/leslie-wechat-local-vault/
