@@ -28,6 +28,14 @@ Status: WARN
 
 [待填写]
 
+### Naturalness audit
+
+- Command: `python3 scripts/check_naturalness.py /absolute/project/.writer-work/article.md`
+- Result: NOT RUN
+- Findings reviewed: [待填写]
+- Paragraphs that repeated instead of progressing: [待填写]
+- Unsupported first-person or decorative detail: [待填写]
+
 ## Visual QA
 
 | ID | Result | Findings | Action |

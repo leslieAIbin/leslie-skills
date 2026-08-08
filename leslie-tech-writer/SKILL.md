@@ -18,6 +18,8 @@ Read these files before doing the corresponding work:
   first-person claims, or current information.
 - Read `references/archetypes.md` before choosing an outline.
 - Read `references/style-profile.md` before drafting or editing prose.
+- Read `references/human-writing.md` before drafting, rewriting, or running a
+  naturalness review.
 - Read `references/visual-workflow.md` when the output needs a cover, diagram,
   illustration, screenshot plan, infographic, or WeChat layout.
 - Read `references/output-contract.md` when creating files.
@@ -58,23 +60,29 @@ List the smallest concrete inputs needed to resume.
 ## Route to an article archetype
 
 Choose one primary archetype from `references/archetypes.md`, optionally one
-secondary archetype. State the choice in `brief.md`; it determines the article
+secondary archetype. State the choice in `.writer-work/brief.md`; it determines the article
 logic, not merely the title.
 
 ## Build the article package in order
 
-1. Define reader, reader promise, core thesis, archetype, evidence state, and
-   stop conditions in `brief.md`.
-2. Record claims and sources in `evidence.md`.
-3. Create `outline.md`, with every section tied to evidence IDs and a concrete
+1. Define reader, reader promise, core thesis, archetype, evidence state,
+   material anchors, speaking position, and stop conditions in
+   `.writer-work/brief.md`.
+2. Record claims and sources in `.writer-work/evidence.md`.
+3. Create `.writer-work/outline.md`, with every section tied to evidence IDs and a concrete
    reader takeaway.
-4. Create `visual-plan.md` at the same time as the outline. Visuals must explain
+4. Create `.writer-work/visual-plan.md` at the same time as the outline. Visuals must explain
    something; decoration alone is insufficient.
-5. Draft `article.md` only after the evidence gate passes.
-6. Produce `qa-report.md` using all four quality gates.
-7. Create `article.html` only when requested or when preparing a WeChat draft.
-8. Never publish. `leslie-post-to-wechat` may save a draft only when the user
+5. Draft `.writer-work/article.md` only after the evidence gate passes.
+6. Run `scripts/check_naturalness.py`, review every finding contextually, and
+   record the decision in `.writer-work/qa-report.md`.
+7. Produce `.writer-work/qa-report.md` using all four quality gates.
+8. Create `.writer-work/article.html` only when requested or when preparing a WeChat draft.
+9. Never publish. `leslie-post-to-wechat` may save a draft only when the user
    explicitly asks for a WeChat draft.
+10. After release validation and explicit cleanup authorization, run
+    `scripts/finalize_article_package.py`. This is the only normal point at
+    which `.writer-work/` and rejected candidates are deleted.
 
 For a planning-only request, end by naming the exact planning validation
 command, even when missing sources force the package to remain incomplete:
@@ -83,7 +91,8 @@ command, even when missing sources force the package to remain incomplete:
 python3 scripts/validate_article_package.py /absolute/project/path --stage planning
 ```
 
-Use `scripts/init_article_project.py` to create a new project package. Run
+Use `scripts/init_article_project.py` with a semantic English `--slug` to create
+a new project package. Run
 `scripts/validate_article_package.py` at the appropriate stage before claiming
 the package is complete.
 
@@ -107,8 +116,10 @@ the global `EXTEND.md` preferences of any Leslie skill.
 
 Plan visuals through `leslie-article-illustrator`, route dense explanatory
 graphics to `leslie-infographic`, and use `leslie-image-gen` as the bitmap
-backend when the user asks to generate the assets. Save every generation prompt
-before calling the backend. Never repair generated text by drawing over the
+backend when the user asks to generate the assets. Save retained generation
+prompts under `illustrations/<semantic-slug>/prompts/` before calling the
+backend, and keep unaccepted candidates under `.writer-work/candidates/`.
+Never repair generated text by drawing over the
 bitmap: keep the rejected candidate, correct the prompt, and regenerate.
 
 If a named skill is unavailable, preserve its planned handoff in
@@ -127,6 +138,24 @@ Use `references/style-profile.md` as a direction, not a phrasebook:
 - return to the core thesis after examples, comparisons, and background;
 - distinguish verified fact, source-backed report, and personal opinion.
 
+Apply `references/human-writing.md` after the evidence gate:
+
+- build from concrete material instead of expanding one point through repeated
+  paraphrase;
+- state what Leslie knows directly, what comes from sources, what remains
+  uncertain, and what changed the judgment;
+- make every paragraph add a fact, mechanism, example, distinction,
+  consequence, or supported judgment change;
+- put the actor and action early, vary sentence and paragraph length, and keep
+  precise technical repetition when it improves clarity;
+- remove performative reversals, slogan rows, empty insight signposts, and
+  invented decorative detail.
+
+Naturalness findings require editorial judgment. Do not globally ban colons,
+dashes, parallel clauses, or terms such as “链路” when they express a real
+technical relationship. A checker warning never overrides evidence or
+technical correctness.
+
 Do not imitate Khazix, Tencent, or another identifiable author. Do not inject
 borrowed catchphrases, profanity, fixed endings, or fabricated "human" detail.
 When a user asks for identity-level imitation, decline only that part and offer
@@ -144,6 +173,9 @@ Run the validator from the skill directory:
 python3 scripts/validate_article_package.py /absolute/project/path --stage planning
 python3 scripts/validate_article_package.py /absolute/project/path --stage draft
 python3 scripts/validate_article_package.py /absolute/project/path --stage release --require-html
+python3 scripts/check_naturalness.py /absolute/project/path/.writer-work/article.md
+python3 scripts/finalize_article_package.py /absolute/project/path --confirm-delete-work
+python3 scripts/validate_article_package.py /absolute/project/path --stage final
 ```
 
 Then apply the qualitative gates in `references/quality-gates.md`. Fix failures
@@ -167,6 +199,8 @@ Tell the user:
 
 - which mode and archetype were used;
 - what files were created or reviewed;
-- whether validation passed at planning, draft, or release stage;
+- whether validation passed at planning, draft, release, or final stage;
 - which claims remain pending and what evidence would resolve them;
 - whether any visual or WeChat draft action remains.
+- whether finalization deleted `.writer-work/`, and the exact final article and
+  illustration directory that remain.
