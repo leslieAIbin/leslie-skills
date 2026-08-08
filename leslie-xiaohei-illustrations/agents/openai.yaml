@@ -1,0 +1,6 @@
+interface:
+  display_name: "Leslie 小黑配图"
+  short_description: "用 ZenMux 为 Leslie 的中文技术文章生成白底怪诞手绘正文配图"
+  default_prompt: "Use $leslie-xiaohei-illustrations to 为这篇中文文章设计并通过 ZenMux 生成几张 16:9 小黑正文配图。"
+policy:
+  allow_implicit_invocation: true

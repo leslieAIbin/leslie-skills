@@ -23,6 +23,10 @@ Fail the release when a central claim is pending, contradictory, or invented.
 - Examples, background, and comparisons return to the thesis.
 - Tradeoffs and unsuitable cases are visible.
 - The conclusion provides a reusable mental model or decision rule.
+- The speaking position is explicit: direct experience, sourced knowledge,
+  uncertainty, and judgment changes are not blurred together.
+- Each paragraph adds a fact, mechanism, example, distinction, consequence, or
+  supported judgment change; repeated paraphrases have been cut.
 
 Fail when the article is a source summary, feature list, or generic tutorial
 without a defensible perspective.
@@ -43,17 +47,30 @@ Fail a technically inaccurate image even when its visual quality is high.
 Prefer deterministic SVG through `leslie-diagram` when generated typography or
 geometry cannot meet this gate.
 
-## Gate 4 — Publication readiness
+## Gate 4 — Voice, naturalness, and publication readiness
 
 - Title promise matches the demonstrated result.
 - Mobile scanability, headings, paragraph rhythm, tables, code, captions, and
   image order have been reviewed.
+- `scripts/check_naturalness.py` has been run and every warning has been
+  accepted with a reason or corrected; the tool is advisory, not an authorship
+  detector.
+- Sentence and paragraph lengths vary with the reasoning. The draft does not
+  rely on rows of slogan-like single sentences, fake reader misconceptions,
+  repeated insight signposts, or three-part template lists.
+- Subjects and actions arrive early enough to follow. Necessary technical terms
+  may repeat; decorative synonyms and inflated nominalizations do not blur the
+  mechanism.
+- First-person presence is backed by the evidence ledger. No anecdote,
+  uncertainty, emotion, or concrete detail was invented to create “humanity”.
 - External links and citations are present and useful.
 - There are no TODOs, placeholders, template markers, debug notes, or rejected
   image candidates linked from the article.
 - WeChat HTML, when requested, matches the Markdown and does not silently drop
   code, formulas, diagrams, images, or citations.
 - Publishing remains a human action; the workflow may prepare a draft only.
+- Finalization happens only after release passes. The durable directory then
+  contains only the title-named Markdown, retained prompts, and accepted images.
 
 ## Reporting format
 

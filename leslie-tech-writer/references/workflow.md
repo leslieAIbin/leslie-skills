@@ -14,6 +14,11 @@ Summarize the material state:
 - what is missing;
 - what must not be claimed.
 
+For substantial nonfiction, list concrete material anchors before drafting.
+Five distinct anchors is a useful readiness heuristic above roughly 1,200
+Chinese characters, not a substitute for claim-level evidence. If the material
+cannot support forward movement, research, ask, or narrow the promise.
+
 ## 2. Apply the topic gate
 
 Score the proposed article direction qualitatively on four axes:
@@ -40,6 +45,9 @@ Write one sentence containing:
 
 Write one separate thesis sentence. The reader contract is the service promise;
 the thesis is Leslie's judgment.
+
+Also record the speaking position: what Leslie knows directly, what is known
+through sources, what is uncertain, and what evidence changed the judgment.
 
 ## 4. Route the structure
 
@@ -72,6 +80,10 @@ Use a short return-to-thesis sentence after a long example, historical aside,
 comparison, or technical background section. The purpose is reader orientation,
 not a repeated slogan.
 
+After each paragraph, be able to name the new fact, mechanism, example,
+distinction, consequence, or supported judgment change it contributes. Merge or
+cut paragraphs that only paraphrase earlier conclusions.
+
 ## 6. Keep human decisions human
 
 Ask for confirmation instead of guessing when the text depends on:
@@ -84,7 +96,11 @@ Ask for confirmation instead of guessing when the text depends on:
 
 ## 7. Complete through gates
 
-Run mechanical validation first, then the four qualitative gates. Mechanical
-success does not override a content failure. A draft with unresolved evidence
-may be delivered as a clearly labeled draft, never as release-ready.
+Run mechanical validation and the advisory naturalness scan, then the four
+qualitative gates. Mechanical success does not override a content failure. A
+draft with unresolved evidence may be delivered as a clearly labeled draft,
+never as release-ready.
 
+Delete process files only after release validation and explicit finalization.
+The final validator must confirm that the durable package contains only the
+title-named article, retained prompts, and accepted images.

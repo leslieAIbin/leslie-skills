@@ -12,7 +12,8 @@ from a concrete puzzle to a reusable mental model.
 ## Preferred movement
 
 1. Start from a real symptom, result, engineering friction, or question.
-2. Surface the intuitive explanation, then show where it is incomplete.
+2. When the material contains a real intuitive explanation, show its tested
+   boundary without inventing a misconception for the reader.
 3. Use evidence and a mechanism to resolve the tension.
 4. Translate the mechanism into implementation, diagnosis, or a decision.
 5. State tradeoffs, failure modes, and boundaries.
@@ -56,6 +57,6 @@ Draft the title after the thesis and evidence are stable. A good title exposes
 the object and the unresolved question or practical consequence. It may use a
 contrast, but must not promise a result the article does not demonstrate.
 
-Keep a factual working title in `brief.md` and record up to five candidates in
-`qa-report.md`. Reject titles that exaggerate numbers, novelty, universality,
+Keep a factual working title in `.writer-work/brief.md` and record up to five candidates in
+`.writer-work/qa-report.md`. Reject titles that exaggerate numbers, novelty, universality,
 or firsthand experience.

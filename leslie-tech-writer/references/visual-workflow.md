@@ -11,7 +11,9 @@ article package and must not overwrite global Leslie Skills preferences.
 - aspect ratio: `16:9`;
 - normal target: `1376×768` or the backend's nearest 1K 16:9 output;
 - language: Simplified Chinese;
-- output: PNG for bitmap infographics, SVG only for diagrams that require
+- generation output: the backend's native PNG or WebP; convert accepted bitmap
+  assets to WebP for the durable package when conversion preserves quality;
+- final output: WebP for accepted bitmaps, SVG only for diagrams that require
   deterministic labels and geometry;
 - text: large, sparse, horizontal, and readable on a phone.
 
@@ -75,7 +77,9 @@ cost. Screenshots and deterministic SVG diagrams may replace generated images.
 
 ## Prompt contract
 
-Save prompts under `prompts/` before generation. Every prompt must contain:
+Save retained prompts under `illustrations/<semantic-slug>/prompts/` before
+generation. Keep rejected variants and exploratory prompts under
+`.writer-work/candidates/` until finalization. Every retained prompt must contain:
 
 1. `PURPOSE` — the question the image answers;
 2. `VISUAL THESIS` — the single relationship the viewer should remember;
@@ -84,7 +88,8 @@ Save prompts under `prompts/` before generation. Every prompt must contain:
 5. `DATA` — numbers, formulas, direction, and evidence IDs;
 6. `STYLE` — `warm-paper-tech` characteristics and palette;
 7. `NEGATIVE` — forbidden content and common failure modes;
-8. `OUTPUT` — 16:9, Simplified Chinese, 1K PNG unless specified otherwise.
+8. `OUTPUT` — 16:9, Simplified Chinese, 1K, with WebP as the durable bitmap
+   format unless specified otherwise.
 
 Use reference images only for style or palette unless direct composition reuse
 is explicitly requested. Do not ask the model to infer technical labels from a
@@ -96,12 +101,16 @@ reference image.
    asked for direct generation.
 2. Generate in batches of at most two, respecting the current Leslie skill
    configuration.
-3. Preserve prompts and every candidate image.
+3. During production, preserve prompts and every candidate image. Put accepted
+   images directly under `illustrations/<semantic-slug>/`; keep candidates under
+   `.writer-work/candidates/`.
 4. Inspect each image at original or high detail.
 5. If a label or technical relation is wrong, revise the prompt and regenerate;
    do not draw corrected text over the bitmap.
-6. Link only accepted assets from `article.md` and record their status in
-   `visual-plan.md`.
+6. Link only accepted assets from `.writer-work/article.md` and record their
+   status in `visual-plan.md`.
+7. After release validation, run finalization. It keeps accepted images and
+   retained prompts, then deletes `.writer-work/` and all rejected candidates.
 
 ## Strict visual QA
 
